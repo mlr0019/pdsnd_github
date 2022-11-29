@@ -37,7 +37,6 @@ def get_filters():
             if month.lower() != 'all':
                 
                 # get int for corresponding month
-                # months = ['january','february','march','april','may','june']
                 month_index = months.index(month.lower()) + 1
             break
         except:
@@ -48,7 +47,6 @@ def get_filters():
         try:
             day = input('Which day would you like to look at? All, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday?')
             if day.lower() != 'all':
-                # days = ['monday', 'tuesday', 'wedesnday', 'thursday', 'friday', 'saturday', 'sunday']
                 day_index = days.index(day.lower())
             break
         except:
@@ -90,7 +88,6 @@ def load_data(city, month, day):
     
     # filter by day given
     if day.lower() != 'all':
-        # days = ['monday', 'tuesday', 'wedesnday', 'thursday', 'friday', 'saturday', 'sunday']
         day_index = days.index(day.lower())
         df = df[df['day_of_week'] == day_index]
         
