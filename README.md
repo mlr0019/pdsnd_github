@@ -7,7 +7,7 @@
 Udacity Bikeshare Data Project
 
 ### Description
-Filter and get stats for Bikeshare data
+Filter and get stats for Bikeshare data for Chicago, New York City, and Washington
 
 ### Files used
 Data files not in the remote repository include:
