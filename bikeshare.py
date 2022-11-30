@@ -2,6 +2,9 @@ import time
 import pandas as pd
 import numpy as np
 
+# Allows user to view all columns if they choose to view raw data--from Udacity project reviewer code comments
+pd.set_option(“display.max_columns”,200)
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -21,8 +24,8 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         try:
-            city = input('Would you like to explore data for Chicago, New York City, or Washington?')
-            filename = CITY_DATA[city.lower()]
+            city = input('Would you like to explore data for Chicago, New York City, or Washington?').lower()
+            filename = CITY_DATA[city]
             break
         except:
             print('Please enter a valid city. Chicago, New York City, or Washington?')
@@ -31,13 +34,13 @@ def get_filters():
     while True:
         try:
             # get month from user input
-            month = input('Which month would you like to look at? January, February, March, April, May, June, or All?')
+            month = input('Which month would you like to look at? January, February, March, April, May, June, or All?').lower()
             
             # filter for month or no filter if 'all'
-            if month.lower() != 'all':
+            if month != 'all':
                 
                 # get int for corresponding month
-                month_index = months.index(month.lower()) + 1
+                month_index = months.index(month) + 1
             break
         except:
             print('Please enter a valid month. January, February, March, April, May, June, or All?')
@@ -45,9 +48,9 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         try:
-            day = input('Which day would you like to look at? All, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday?')
-            if day.lower() != 'all':
-                day_index = days.index(day.lower())
+            day = input('Which day would you like to look at? All, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday?').lower()
+            if day != 'all':
+                day_index = days.index(day)
             break
         except:
             print('Please enter a valid day. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or All?')
@@ -67,7 +70,7 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df = pd.read_csv(CITY_DATA[city.lower()])
+    df = pd.read_csv(CITY_DATA[city])
             
     # create month column from the start time column
     df['Start Time'] = pd.to_datetime(df['Start Time'])
@@ -77,7 +80,7 @@ def load_data(city, month, day):
     if month.lower() != 'all':
         # get int for corresponding month
         # months = ['january','february','march','april','may','june']
-        month = months.index(month.lower()) + 1
+        month = months.index(month) + 1
         
         # filter by month given
         df = df[df['month'] == month]
@@ -87,8 +90,8 @@ def load_data(city, month, day):
     
     
     # filter by day given
-    if day.lower() != 'all':
-        day_index = days.index(day.lower())
+    if day != 'all':
+        day_index = days.index(day)
         df = df[df['day_of_week'] == day_index]
         
     # create start hour column
