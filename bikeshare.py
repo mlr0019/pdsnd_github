@@ -2,6 +2,9 @@ import time
 import pandas as pd
 import numpy as np
 
+# Allows user to view all columns if they choose to view raw data--from Udacity project reviewer code comments
+pd.set_option(“display.max_columns”,200)
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
